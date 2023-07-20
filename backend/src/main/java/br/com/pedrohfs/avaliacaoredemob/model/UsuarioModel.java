@@ -4,9 +4,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
+@Entity(name = "usuario")
 @Data
 @NoArgsConstructor
 public class UsuarioModel {
@@ -16,10 +18,23 @@ public class UsuarioModel {
     private Integer id;
 
     @Column(unique = true, name = "login")
-    @NotEmpty(message = "{campo.username.obrigatorio}")
-    private String username;
+    private String login;
 
     @Column(name = "senha")
-    @NotEmpty(message = "{campo.password.obrigatorio}")
-    private String password;
+    private String senha;
+
+    @Column(name = "nome")
+    private String nome;
+
+    @Column(name = "dt_nascimento")
+    private LocalDate dataNascimento;
+
+    @Column(name = "cpf")
+    private String cpf;
+
+    @Column(name = "nome_mae")
+    private String nomeMae;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<SolicitacaoModel> solicitacoes = new ArrayList<>();
 }

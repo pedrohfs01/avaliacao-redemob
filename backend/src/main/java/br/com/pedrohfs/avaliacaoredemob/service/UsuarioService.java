@@ -18,7 +18,7 @@ public class UsuarioService implements UserDetailsService {
 
 
     public UsuarioModel salvar(UsuarioModel usuarioModel){
-        boolean exists = repo.existsByUsername(usuarioModel.getUsername());
+        boolean exists = repo.existsByLogin(usuarioModel.getLogin());
         if(exists){
             throw new UsuarioCadastradoException();
         }
@@ -26,12 +26,12 @@ public class UsuarioService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UsuarioModel usuarioModel = repo.findByUsername(username)
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        UsuarioModel usuarioModel = repo.findByLogin(login)
                               .orElseThrow(() -> new UsernameNotFoundException("Login não encontrado"));
         return User.builder()
-                .username(usuarioModel.getUsername())
-                .password(usuarioModel.getPassword())
+                .username(usuarioModel.getLogin())
+                .password(usuarioModel.getSenha())
                 .roles("USER")
                 .build()
                 ;

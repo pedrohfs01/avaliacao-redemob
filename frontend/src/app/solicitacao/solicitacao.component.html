@@ -1,0 +1,81 @@
+<div style="background-color: aqua;">
+    <p-toast></p-toast>
+    <div class="card" style="width:720px; position:relative; left:30%; background-color: white;">
+        <h1 class="mt-4 ml-4">Solicitação cartão de transporte</h1>
+        <button pButton type="button" class="p-button-text" label="Consulta Solicitações"
+            (click)="consultaSolicitacao($event)"></button>
+        <div class="p-fluid p-grid p-formgrid">
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <div class="p-fluid">
+                    <div class="p-field p-col-12 p-md-4">
+                        <h5>Possui moradia em um dos municípios que compõe a Região Metropolitana de Goiânia?</h5>
+                        <div class="p-field-radiobutton">
+                            <p-radioButton formControlName="possuiMoradia" value=true inputId="optSim"></p-radioButton>
+                            <label for="optSim" class="mr-4">Sim</label>
+                            <p-radioButton formControlName="possuiMoradia" value=false inputId="optNao"></p-radioButton>
+                            <label for="optNao">Não</label>
+                        </div>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="login">Login*</label>
+                        <input type="text" id="login" pInputText formControlName="login" />
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="senha">Senha*</label>
+                        <input type="password" id="senha" pInputText formControlName="senha" appSecurePassword="true" />
+                        <div
+                            *ngIf="registrationForm.controls['senha'].touched && registrationForm.controls['senha'].errors?.insecurePassword">
+                            A senha deve conter letras maiúsculas, minúsculas, números e caracteres especiais.
+                        </div>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="nome">Nome*</label>
+                        <input type="text" id="nome" pInputText formControlName="nome" />
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="dataNascimento">Data de nascimento*</label>
+                        <p-calendar inputId="dataNascimento" formControlName="dataNascimento" dateFormat="dd/mm/yy"
+                            [showIcon]="true"></p-calendar>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="cpf">CPF*</label>
+                        <p-inputMask type="text" id="cpf" formControlName="cpf" mask="999.999.999-99"></p-inputMask>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="nomeMae">Nome da mãe*</label>
+                        <input type="text" id="nomeMae" pInputText formControlName="nomeMae" />
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="fotoRosto">Foto do rosto*</label>
+                        <p-fileUpload name="fotoRosto" (onSelect)="uploadFoto($event, 0)" cancelLabel="Cancelar"
+                            [showUploadButton]=false chooseLabel="Escolher" accept="image/*"></p-fileUpload>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="fotoDocumento">Foto do documento*</label>
+                        <p-fileUpload name="fotoDocumento" (onSelect)="uploadFoto($event, 1)" cancelLabel="Cancelar"
+                            [showUploadButton]=false chooseLabel="Escolher" accept="image/*"></p-fileUpload>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="fotoComprovaMoradia">Foto que comprova a moradia*</label>
+                        <p-fileUpload name="fotoComprovaMoradia" accept="image/*" cancelLabel="Cancelar"
+                            [showUploadButton]=false (onSelect)="uploadFoto($event, 2)"
+                            chooseLabel="Escolher"></p-fileUpload>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4">
+                        <button type="submit" pButton label="Solicitar" class="p-button-primary"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

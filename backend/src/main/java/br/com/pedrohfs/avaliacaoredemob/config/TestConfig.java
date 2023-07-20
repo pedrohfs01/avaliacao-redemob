@@ -17,8 +17,8 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         UsuarioModel u1 = new UsuarioModel();
-        u1.setUsername("pedro");
-        u1.setPassword("123");
+        u1.setLogin("pedro");
+        u1.setSenha("123");
 
         usuarioRepository.save(u1);
 

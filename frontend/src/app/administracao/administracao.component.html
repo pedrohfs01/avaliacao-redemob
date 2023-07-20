@@ -1,0 +1,42 @@
+<p-toast></p-toast>
+
+<div class="card">
+    <p-table #dt [value]="solicitacoes" [rows]="10" [paginator]="true"
+        [globalFilterFields]="['nome','nomeMae','cpf','dataNascimento']" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} registros"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
+                <th pSortableColumn="nomeMae">Nome mãe<p-sortIcon field="nomeMae"></p-sortIcon></th>
+                <th pSortableColumn="cpf">Cpf <p-sortIcon field="cpf"></p-sortIcon></th>
+                <th pSortableColumn="dataNascimento">Data Nascimento <p-sortIcon field="dataNascimento"></p-sortIcon>
+                </th>
+                <th>Imagem rosto</th>
+                <th>Imagem documento</th>
+                <th>Imagem comprovante moradia</th>
+                <th>Aprovar / Recusar</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-solicitacao>
+            <tr>
+                <td>{{solicitacao.nome}}</td>
+                <td>{{solicitacao.nomeMae}}</td>
+                <td>{{solicitacao.cpf}}</td>
+                <td>{{solicitacao.dataNascimento}}</td>
+                <td><img [src]="'data:image/jpeg;base64,'+solicitacao.fotoRosto" [alt]="'foto rosto'" width="100"
+                        class="p-shadow-4" /></td>
+                <td><img [src]="'data:image/jpeg;base64,'+solicitacao.fotoDocumento" [alt]="'foto documento'"
+                        width="100" class="p-shadow-4" /></td>
+                <td><img [src]="'data:image/jpeg;base64,'+solicitacao.fotoComprovaMoradia"
+                        [alt]="'foto comprova moradia'" width="100" class="p-shadow-4" /></td>
+                <td>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-4"
+                        (click)="aprovar(solicitacao)"></button>
+                    <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-ml-4"
+                        (click)="recusar(solicitacao)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
