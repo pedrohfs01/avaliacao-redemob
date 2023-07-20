@@ -36,3 +36,7 @@ login: admin
 senha: 123
 
 Para outros testes, pode criar o login e senha na tela de solicitação normalmente.
+
+
+Se estiver dando erro na aplicação nas requisições por token, apertar f12 no navegador -> ir na aba de aplicativos -> no menu a esquerda procurar Armazenamento Local -> abrir o localhost:4200 -> e excluir todas as chaves e valor(Pode ser no botão de bloqueio que está na parte superior a direita).
+Isso fará com que atualize o token na próxima vez, pois não daria tempo de implementar uma questão de token e autenticação completa em 24h.
